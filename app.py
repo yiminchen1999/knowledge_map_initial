@@ -15,6 +15,7 @@ from IPython.core.display import display, HTML
 st.sidebar.title('Choose your week')
 option=st.sidebar.selectbox('select graph',('week1','week2', 'week3'))
 physics=st.sidebar.checkbox('add physics interactivity?')
+
 got.simple_func(physics)
 if option=='week1':
   HtmlFile = open("index.html", 'r', encoding='utf-8')
