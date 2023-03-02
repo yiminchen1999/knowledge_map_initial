@@ -1,0 +1,121 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1>Individual Knowledge Map Week 2</h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 500px;
+            height: 500px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+        #config {
+            float: left;
+            width: 400px;
+            height: 600px;
+        }
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<div id = "config"></div>
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "#DEEBF7", "id": 0, "label": "lasercut", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#DEEBF7", "id": 1, "label": "3dprint", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#DEEBF7", "id": 4, "label": "debug", "shape": "dot", "size": 9, "title": "Week1"}, {"color": "#DEEBF7", "id": 5, "label": "trial", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#9ECAE1", "id": 2, "label": "woodtool", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#9ECAE1", "id": 3, "label": "design", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#9ECAE1", "id": 10, "label": "shape ", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#9ECAE1", "id": 11, "label": "material", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#9ECAE1", "id": 12, "label": "battery", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#9ECAE1", "id": 13, "label": "power", "shape": "dot", "size": 6, "title": "Week2"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 3}, {"from": 4, "to": 5}, {"from": 4, "to": 10}, {"from": 4, "to": 11}, {"from": 5, "to": 10}, {"from": 5, "to": 11}, {"from": 10, "to": 11}, {"from": 12, "to": 13}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": true,
+        "filter": "physics"
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+        // if this network requires displaying the configure window,
+        // put it in its div
+        options.configure["container"] = document.getElementById("config");
+        
+
+        network = new vis.Network(container, data, options);
+
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
