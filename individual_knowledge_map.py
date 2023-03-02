@@ -84,7 +84,8 @@ for i in net2_id:
         if i != j and keywords_group[i] == keywords_group[j]:
             net2.add_edge(i, j)
 #net2.show("social_network.html")
-net2.show_buttons(filter_="physics")
+#net2.show_buttons(filter_="physics")
+net2.show_buttons(filter_=['physics'])
 net2.show('index2.html')
 #open the result in webbrowser
 try:
