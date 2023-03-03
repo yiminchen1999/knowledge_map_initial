@@ -30,7 +30,7 @@ palette = Blues_3.hex_colors
 #print(palette)
 palette[0]
 
-def got_func(physics):
+def func1(physics):
   net1 = Network(notebook=False, heading="Individual Knowledge Map Week 1")
   # name for html
   title = []
@@ -58,7 +58,7 @@ def got_func(physics):
 
   
 
-def simple_func(physics):
+def func2(physics):
   net2 = Network(notebook=False, heading="Individual Knowledge Map Week 2")
   # name for html
   title = []
@@ -86,7 +86,7 @@ def simple_func(physics):
   net2.show('index2.html')
 
 
-def karate_func(physics):
+def func3(physics):
   net3 = Network(notebook=False, heading="Individual Knowledge Map Week 3")
   title = []
   html_name = 'index3.html'

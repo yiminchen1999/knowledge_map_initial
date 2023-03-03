@@ -43,9 +43,9 @@ sidebar = html.Div(
     style=SIDEBAR_STYLE,
 )
 
-div1 = html.Div([html.Iframe(src=app.get_asset_url("./social_network1.html"), style={"width":"100%", "height":"700px"}, id="graph1")], style={"background":"transparent", "height":"700px"})
-div2 = html.Div([html.Iframe(src=app.get_asset_url("./social_network2.html"), style={"width":"100%", "height":"700px"}, id="graph2")], style={"background":"transparent", "height":"700px"})
-div3 = html.Div([html.Iframe(src=app.get_asset_url("./social_network3.html"), style={"width":"100%", "height":"700px"}, id="graph3")], style={"background":"transparent", "height":"700px"})
+div1 = html.Div([html.Iframe(src=app.get_asset_url("social_network1.html"), style={"width":"100%", "height":"700px"}, id="graph1")], style={"background":"transparent", "height":"700px"})
+div2 = html.Div([html.Iframe(src=app.get_asset_url("social_network2.html"), style={"width":"100%", "height":"700px"}, id="graph2")], style={"background":"transparent", "height":"700px"})
+div3 = html.Div([html.Iframe(src=app.get_asset_url("social_network3.html"), style={"width":"100%", "height":"700px"}, id="graph3")], style={"background":"transparent", "height":"700px"})
 
 content = html.Div(id="page-content", style=CONTENT_STYLE)
 
