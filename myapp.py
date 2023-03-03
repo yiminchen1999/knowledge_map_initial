@@ -1,7 +1,11 @@
 import dash
 import dash_bootstrap_components as dbc
 from dash import Input, Output, dcc, html
-
+import sys
+import os
+#sys.path.append(path)
+print(os.getcwd())
+#os.chdir('/Users/chenyimin/PycharmProjects/knowledge_map/')
 app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # the style arguments for the sidebar. We use position:fixed and a fixed width
@@ -14,7 +18,9 @@ SIDEBAR_STYLE = {
     "padding": "2rem 1rem",
     "background-color": "rgba(205, 237, 240,  1)",
 }
-
+#"/Users/chenyimin/PycharmProjects/knowledge_map
+#
+#cd C:/Users/chenyimin/PycharmProjects/knowledge_map
 # the styles for the main content position it to the right of the sidebar and
 # add some padding.
 CONTENT_STYLE = {
@@ -44,8 +50,8 @@ sidebar = html.Div(
 )
 
 div1 = html.Div([html.Iframe(src=app.get_asset_url("social_network1.html"), style={"width":"100%", "height":"700px"}, id="graph1")], style={"background":"transparent", "height":"700px"})
-div2 = html.Div([html.Iframe(src=app.get_asset_url("social_network2.html"), style={"width":"100%", "height":"700px"}, id="graph2")], style={"background":"transparent", "height":"700px"})
-div3 = html.Div([html.Iframe(src=app.get_asset_url("social_network3.html"), style={"width":"100%", "height":"700px"}, id="graph3")], style={"background":"transparent", "height":"700px"})
+div2 = html.Div([html.Iframe(src=app.get_asset_url("/knowledge_map/social_network2.html"), style={"width":"100%", "height":"700px"}, id="graph2")], style={"background":"transparent", "height":"700px"})
+div3 = html.Div([html.Iframe(src=app.get_asset_url("/knowledge_map/social_networ3.html"), style={"width":"100%", "height":"700px"}, id="graph3")], style={"background":"transparent", "height":"700px"})
 
 content = html.Div(id="page-content", style=CONTENT_STYLE)
 
