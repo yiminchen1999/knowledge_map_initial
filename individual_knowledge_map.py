@@ -28,7 +28,7 @@ palette = Blues_3.hex_colors
 palette[0]
 #net1 = Network(notebook=True, heading="Individual Knowledge Map Week 1", cdn_resources='remote')
 #initialize code
-net1 = Network(notebook=False)#, heading="Individual Knowledge Map Week 1" )
+net1 = Network(notebook=False,heading="")#, heading="Individual Knowledge Map Week 1" )
 #name for html
 title =[]
 html_name='index.html'
@@ -63,7 +63,7 @@ webbrowser.open(url)
 
 #show_graph('index.html')
 
-net2 = Network(notebook=False)#, heading="Individual Knowledge Map Week 2" )
+net2 = Network(notebook=False,heading="")#, heading="Individual Knowledge Map Week 2" )
 #name for html
 title =[]
 html_name='index2.html'
@@ -96,7 +96,7 @@ url = 'file:{}'.format(pathname2url(os.path.abspath(html_name)))
 webbrowser.open(url)
 
 
-net3 = Network(notebook=False)#, heading="Individual Knowledge Map Week 3" )
+net3 = Network(notebook=False,heading="")#, heading="Individual Knowledge Map Week 3" )
 title =[]
 html_name='index3.html'
 #net3 = Network(notebook=True, heading="Individual Knowledge Map Week 3", filter_menu=True, cdn_resources='remote')
