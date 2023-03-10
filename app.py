@@ -1,25 +1,15 @@
-
 import dash
+from dash import Dash, html, dcc, Input, Output, MATCH, callback_context, State
 import dash_bootstrap_components as dbc
-#import dash_core_components as dcc
-#import dash_html_components as html
-from dash import html
-from dash import dcc
-import dash
-import dash_bootstrap_components as dbc
-import dash_bootstrap_templates
-from dash import Input, Output, dcc, html
-import dash
-import dash_bootstrap_components as dbc
-import dash_bootstrap_templates
-from jupyter_dash import JupyterDash
-from dash import Input, Output, dcc, html
-from dash_bootstrap_templates import load_figure_template
-import plotly.graph_objs as go
-from dash.dependencies import Input, Output, State
-import sys
-import os
-import time
+import pandas as pd
+import plotly.express as px
+from dash import Dash, html, dcc
+import dash_loading_spinners as dls
+#pip install dash-loading-spinners
+df = pd.read_csv('/Users/chenyimin/Desktop/week_keyword_table_s01_2021.csv',index_col=0)
+fig = px.scatter(df, x='lasercut', y='lasercut',
+                color='lasercut', hover_name='lasercut',
+                 log_x=True, size_max=60)
 
 initial_html = open("/Users/chenyimin/PycharmProjects/knowledge_map/index.html", 'r').read()
 with open('/Users/chenyimin/PycharmProjects/knowledge_map/index2.html', 'r') as f:
@@ -50,22 +40,23 @@ CONTENT_STYLE = {
 
 content = html.Div(id="page-content", style=CONTENT_STYLE)
 
+
 navbar = dbc.NavbarSimple(
     children=[
-        dbc.NavItem(dbc.NavLink("Link", href="#")),
+        dbc.NavItem(dbc.NavLink("TLTL Lab Link💡", href="https://tltlab.org/")),
         dbc.DropdownMenu(
             nav=True,
             in_navbar=True,
-            label="Menu",
+            label="Menu📚",
             children=[
-                dbc.DropdownMenuItem("Entry 1"),
-                dbc.DropdownMenuItem("Entry 2"),
+                dbc.DropdownMenuItem("homepage"),
+                dbc.DropdownMenuItem("analysis"),
                 dbc.DropdownMenuItem(divider=True),
-                dbc.DropdownMenuItem("Entry 3"),
+                dbc.DropdownMenuItem("conclusion"),
             ],
         ),
     ],
-    brand="Keyword Matrix",
+    brand="Keyword Matrix📝",
     brand_href="#",
     sticky="top",
 )
@@ -75,18 +66,36 @@ body = dbc.Container(
         dbc.Row(
             [
                 dbc.Col(
-                    [
-                        html.H5("Heading"),
+                    [html.Br(),html.Br(),
+html.Div(
+        [
+            html.H5(["Find your keywords", dbc.Badge(" !!", className="display-6")]),
+            html.Hr(className="my-2"),
+            html.Br(),
+            html.P(
+                "This study proposes a systematic approach to examining subject development and collaboration dynamics over time in educational research communities by utilizing social network analysis on time-evolving co-authorship networks and natural language processing."
+                
+                ""
+            ), dbc.Button("View weekly distributions", color="light", outline=True,id="loading-button",
 
-                        html.P(
-                            """\
-                            This study proposes a systematic approach to examining subject development 
-  and collaboration dynamics over time in educational research communities 
-    by utilizing social network analysis on time-evolving co-authorship networks 
-      and natural language processing. """
-                        ),
-                        dbc.Button("View details", color="secondary"),
+                            n_clicks=0),
+            html.Div([
+                            dcc.Dropdown(['Week1', 'Week2', 'Week3','Week4','Week5','Week6','Week7','Week8','Week9','Week10','Week11','Week12'], "Week1", multi=True)
+                        ]),
+
+        ],
+        className="h-100 p-5 text-white bg-dark rounded-3",
+    ),
+#html.H5(["Find your keywords", dbc.Badge("!!", className="ms-1")]),
+                        html.Br(),
+                       html.Br(),
+                        dbc.Button("use for later",outline=True, color="dark"),
+                        html.Div([
+                            dcc.Dropdown(['Week1', 'Week2', 'Week3','Week4','Week5','Week6','Week7','Week8','Week9','Week10','Week11','Week12'], "Week1", multi=True)
+                        ])
                     ],
+
+
 
                     md=4,
                 ),
@@ -95,8 +104,14 @@ body = dbc.Container(
                         html.Iframe(srcDoc=initial_html, width='70%', height='600',
                                     style={'display': 'inline-block', 'vertical-align': 'top', 'margin-left': '3vw',
                                            'margin-top': '3vw'}),
-                    ]),
-                )
+                    ]), md=8,
+                ),
+dbc.Col(
+    html.Div([
+        dcc.Graph(id='keywords', figure=fig)
+    ]),
+       ),
+
 
 
             ],
@@ -107,9 +122,9 @@ body = dbc.Container(
 )
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
-
+app.title = 'weekly keywords'
 app.layout = html.Div([navbar, body])
 
 if __name__ == "__main__":
-    app.run_server(debug=True, port=8050)
+    app.run_server(debug=True, port=8888)
 
