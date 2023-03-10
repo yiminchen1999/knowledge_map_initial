@@ -6,11 +6,11 @@ import dash_bootstrap_components as dbc
 from dash import html
 from dash import dcc
 
-initial_html = open("/Users/chenyimin/PycharmProjects/knowledge_map/social_network1.html", 'r').read()
-with open('/Users/chenyimin/PycharmProjects/knowledge_map/social_network2.html', 'r') as f:
+initial_html = open("/Users/chenyimin/PycharmProjects/knowledge_map/index.html", 'r').read()
+with open('/Users/chenyimin/PycharmProjects/knowledge_map/index2.html', 'r') as f:
     second_html = f.read()
 
-with open('/Users/chenyimin/PycharmProjects/knowledge_map/social_network3.html', 'r') as f:
+with open('/Users/chenyimin/PycharmProjects/knowledge_map/index3.html', 'r') as f:
     third_html = f.read()
 
 navbar = dbc.NavbarSimple(
