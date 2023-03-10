@@ -1,37 +1,71 @@
-import streamlit as st
-import streamlit.components.v1 as components
-import matplotlib.pyplot as plt
-#Network(notebook=True)
-st.title('Hello Pyvis')
-from pyvis.network import Network
-import pandas as pd
-import networkx as nx
-import webbrowser
-import os
-import got
-from IPython.core.display import display, HTML
 
-#Network._repr_html_ = net_repr_html
-st.sidebar.title('Choose your week')
-option=st.sidebar.selectbox('select graph',('week1','week2', 'week3'))
-physics=st.sidebar.checkbox('add physics interactivity?')
+import dash
+import dash_bootstrap_components as dbc
+#import dash_core_components as dcc
+#import dash_html_components as html
+from dash import html
+from dash import dcc
 
-got.func1(physics)
-if option=='week1':
-  HtmlFile = open("index.html", 'r', encoding='utf-8')
-  source_code = HtmlFile.read() 
-  components.html(source_code, height = 900,width=900)
+initial_html = open("/Users/chenyimin/PycharmProjects/knowledge_map/social_network1.html", 'r').read()
+with open('/Users/chenyimin/PycharmProjects/knowledge_map/social_network2.html', 'r') as f:
+    second_html = f.read()
 
-got.func2(physics)
-if option=='week2':
-  HtmlFile = open("index2.html", 'r', encoding='utf-8')
-  source_code = HtmlFile.read() 
-  components.html(source_code, height = 1200,width=1000)
+with open('/Users/chenyimin/PycharmProjects/knowledge_map/social_network3.html', 'r') as f:
+    third_html = f.read()
 
+navbar = dbc.NavbarSimple(
+    children=[
+        dbc.NavItem(dbc.NavLink("Link", href="#")),
+        dbc.DropdownMenu(
+            nav=True,
+            in_navbar=True,
+            label="Menu",
+            children=[
+                dbc.DropdownMenuItem("Entry 1"),
+                dbc.DropdownMenuItem("Entry 2"),
+                dbc.DropdownMenuItem(divider=True),
+                dbc.DropdownMenuItem("Entry 3"),
+            ],
+        ),
+    ],
+    brand="Keyword Matrix",
+    brand_href="#",
+    sticky="top",
+)
 
+body = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        html.H2("Heading"),
+                        html.P(
+                            """\
+                            This study proposes a systematic approach to examining subject development 
+  and collaboration dynamics over time in educational research communities 
+    by utilizing social network analysis on time-evolving co-authorship networks 
+      and natural language processing. """
+                        ),
+                        dbc.Button("View details", color="secondary"),
+                    ],
+                    md=4,
+                ),
+                dbc.Col(
+                  html.Div([
+                    html.Iframe(srcDoc=initial_html, width='65%', height='600')
+                  ])
+                ),
+            ]
+        )
+    ],
+    className="mt-4",
+)
 
-got.func3(physics)
-if option=='week3':
-  HtmlFile = open("index3.html", 'r', encoding='utf-8')
-  source_code = HtmlFile.read() 
-  components.html(source_code, height = 1200,width=1000)
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+app.layout = html.Div([navbar, body])
+
+if __name__ == "__main__":
+    app.run_server(debug=True, port=8050)
+

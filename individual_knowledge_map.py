@@ -46,7 +46,7 @@ for i in net1_id:
         if i != j and keywords_group[i] == keywords_group[j]:
             net1.add_edge(i, j)
 #net1.show("social_network.html")
-net1.show_buttons(filter_="physics")
+
 net1.show('index.html')
 
 #open the result in webbrowser
@@ -85,7 +85,6 @@ for i in net2_id:
             net2.add_edge(i, j)
 #net2.show("social_network.html")
 #net2.show_buttons(filter_="physics")
-net2.show_buttons(filter_=['physics'])
 net2.show('index2.html')
 #open the result in webbrowser
 try:
@@ -120,7 +119,6 @@ for i in net3_id:
         if i != j and keywords_group[i] == keywords_group[j]:
             net3.add_edge(i, j)
 #net3.show("social_network.html")
-net3.show_buttons(filter_="physics")
 net3.show('index3.html')
 
 #open the result in webbrowser

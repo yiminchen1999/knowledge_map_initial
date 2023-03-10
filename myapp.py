@@ -1,34 +1,21 @@
 import dash
 import dash_bootstrap_components as dbc
+import dash_bootstrap_templates
 from dash import Input, Output, dcc, html
-import sys
-import os
-#sys.path.append(path)
-print(os.getcwd())
-#os.chdir('/Users/chenyimin/PycharmProjects/knowledge_map/')
-app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+from dash_bootstrap_templates import load_figure_template
 
-# the style arguments for the sidebar. We use position:fixed and a fixed width
-SIDEBAR_STYLE = {
-    "position": "fixed",
-    "top": 0,
-    "left": 0,
-    "bottom": 0,
-    "width": "25rem",
-    "padding": "2rem 1rem",
-    "background-color": "rgba(205, 237, 240,  1)",
-}
-#"/Users/chenyimin/PycharmProjects/knowledge_map
-#
-#cd C:/Users/chenyimin/PycharmProjects/knowledge_map
-# the styles for the main content position it to the right of the sidebar and
-# add some padding.
-CONTENT_STYLE = {
-    "margin-left": "25rem",
-    "margin-right": "0rem",
-    "padding": "2rem 1rem",
-}
 
+# Set the app and the external stylesheet
+app = dash.Dash(external_stylesheets=[dbc.themes.CYBORG])
+
+# Set the figure template
+load_figure_template("LUX")
+
+# Set the sidebar and content styles
+SIDEBAR_STYLE = "sidebar"
+CONTENT_STYLE = "content"
+
+# Define the sidebar
 sidebar = html.Div(
     [
         dbc.Row([html.P("My App", className="display-6")]),
@@ -46,28 +33,37 @@ sidebar = html.Div(
             pills=True,
         ),
     ],
-    style=SIDEBAR_STYLE,
+    className=SIDEBAR_STYLE,
 )
 
-div1 = html.Div([html.Iframe(src=app.get_asset_url("social_network1.html"), style={"width":"100%", "height":"700px"}, id="graph1")], style={"background":"transparent", "height":"700px"})
-div2 = html.Div([html.Iframe(src=app.get_asset_url("/knowledge_map/social_network2.html"), style={"width":"100%", "height":"700px"}, id="graph2")], style={"background":"transparent", "height":"700px"})
-div3 = html.Div([html.Iframe(src=app.get_asset_url("/knowledge_map/social_networ3.html"), style={"width":"100%", "height":"700px"}, id="graph3")], style={"background":"transparent", "height":"700px"})
+# Define the content
+div1 = html.Div([html.Iframe(src=app.get_asset_url("social_network1.html"), id="graph1")], className="iframe")
+div2 = html.Div([html.Iframe(src=app.get_asset_url("social_network2.html"), id="graph2")], className="iframe")
+div3 = html.Div([html.Iframe(src=app.get_asset_url("social_network3.html"), id="graph3")], className="iframe")
 
-content = html.Div(id="page-content", style=CONTENT_STYLE)
+content = html.Div(id="page-content", className=CONTENT_STYLE)
 
-app.layout = html.Div([dcc.Location(id="url"), sidebar, content])     
+# Define the app layout
+app.layout = html.Div([dcc.Location(id="url"), sidebar, content])
 
+# Define the callbacks
 @app.callback(Output("page-content", "children"), [Input("url", "pathname")])
-def render_page_content(pathname):
+def render_page_content(pathname: str) -> html.Div:
     if pathname == "/":
-        return [html.P("Individual Knowledge Map Week 1", style={"background":"rgba(205, 237, 240,  1)", 
-                "height":"45px", "text-align":"center", "line-height":"45px", "border-radius":"4px", "font-size":"20px"}), div1]
+        return html.Div([
+            html.P("Individual Knowledge Map Week 1", className="title"),
+            div1
+        ])
     elif pathname == "/page-1":
-        return [html.P("Individual Knowledge Map Week 1 & 2", style={"background":"rgba(205, 237, 240,  1)", 
-                "height":"45px", "text-align":"center", "line-height":"45px", "border-radius":"4px", "font-size":"20px"}), div2]
+        return html.Div([
+            html.P("Individual Knowledge Map Week 1 & 2", className="title"),
+            div2
+        ])
     elif pathname == "/page-2":
-        return [html.P("Individual Knowledge Map Week 1 & 2 &3", style={"background":"rgba(205, 237, 240,  1)", 
-                "height":"45px", "text-align":"center", "line-height":"45px", "border-radius":"4px", "font-size":"20px"}), div3]
+        return html.Div([
+            html.P("Individual Knowledge Map Week 1 & 2 &3", className="title"),
+            div3
+        ])
 
     # If the user tries to reach a different page, return a 404 message
     return html.Div(
@@ -79,5 +75,8 @@ def render_page_content(pathname):
         className="p-3 bg-light rounded-3",
     )
 
-if __name__ == "__main__":
-    app.run_server(debug=True)
+    # if __name__ == "__main__":
+    # app.run_server(debug=True)
+
+    if __name__ == "__main__":
+        app.run_server(debug=True)
