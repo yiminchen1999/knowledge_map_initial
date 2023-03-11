@@ -96,6 +96,7 @@ url = 'file:{}'.format(pathname2url(os.path.abspath(html_name)))
 webbrowser.open(url)
 
 
+
 net3 = Network(notebook=False,heading="")#, heading="Individual Knowledge Map Week 3" )
 title =[]
 html_name='index3.html'
