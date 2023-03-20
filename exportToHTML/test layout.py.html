@@ -1,0 +1,168 @@
+<html>
+<head>
+<title>test layout.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #6897bb;}
+.s4 { color: #808080;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+test layout.py</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">dash</span>
+<span class="s0">import </span><span class="s1">dash_bootstrap_components </span><span class="s0">as </span><span class="s1">dbc</span>
+<span class="s0">from </span><span class="s1">dash </span><span class="s0">import </span><span class="s1">html</span>
+<span class="s0">from </span><span class="s1">dash </span><span class="s0">import </span><span class="s1">dcc</span>
+<span class="s0">import </span><span class="s1">pandas </span><span class="s0">as </span><span class="s1">pd</span>
+<span class="s0">import </span><span class="s1">numpy </span><span class="s0">as </span><span class="s1">np</span>
+<span class="s0">import </span><span class="s1">plotly.express </span><span class="s0">as </span><span class="s1">px</span>
+
+<span class="s1">df = pd.read_csv(</span><span class="s2">'/Users/chenyimin/Desktop/week_keyword_table_s01_2021.csv'</span><span class="s0">,</span><span class="s1">index_col=</span><span class="s3">0</span><span class="s1">)</span>
+<span class="s1">fig = px.scatter(df</span><span class="s0">, </span><span class="s1">x=</span><span class="s2">'lasercut'</span><span class="s0">, </span><span class="s1">y=</span><span class="s2">'lasercut'</span><span class="s0">,</span>
+                <span class="s1">color=</span><span class="s2">'lasercut'</span><span class="s0">, </span><span class="s1">hover_name=</span><span class="s2">'lasercut'</span><span class="s0">,</span>
+                 <span class="s1">log_x=</span><span class="s0">True, </span><span class="s1">size_max=</span><span class="s3">60</span><span class="s1">)</span>
+
+<span class="s1">initial_html = open(</span><span class="s2">&quot;/Users/chenyimin/PycharmProjects/knowledge_map/index.html&quot;</span><span class="s0">, </span><span class="s2">'r'</span><span class="s1">).read()</span>
+<span class="s0">with </span><span class="s1">open(</span><span class="s2">'/Users/chenyimin/PycharmProjects/knowledge_map/index2.html'</span><span class="s0">, </span><span class="s2">'r'</span><span class="s1">) </span><span class="s0">as </span><span class="s1">f:</span>
+    <span class="s1">second_html = f.read()</span>
+
+<span class="s0">with </span><span class="s1">open(</span><span class="s2">'/Users/chenyimin/PycharmProjects/knowledge_map/index3.html'</span><span class="s0">, </span><span class="s2">'r'</span><span class="s1">) </span><span class="s0">as </span><span class="s1">f:</span>
+    <span class="s1">third_html = f.read()</span>
+<span class="s1">app = dash.Dash(external_stylesheets=[dbc.themes.DARKLY])</span>
+<span class="s1">navbar = dbc.NavbarSimple(</span>
+    <span class="s1">children=[</span>
+        <span class="s1">dbc.NavItem(dbc.NavLink(</span><span class="s2">&quot;TLTL Lab Link💡&quot;</span><span class="s0">, </span><span class="s1">href=</span><span class="s2">&quot;https://tltlab.org/&quot;</span><span class="s1">))</span><span class="s0">,</span>
+        <span class="s1">dbc.DropdownMenu(</span>
+            <span class="s1">nav=</span><span class="s0">True,</span>
+            <span class="s1">in_navbar=</span><span class="s0">True,</span>
+            <span class="s1">label=</span><span class="s2">&quot;Menu📚&quot;</span><span class="s0">,</span>
+            <span class="s1">children=[</span>
+                <span class="s1">dbc.DropdownMenuItem(</span><span class="s2">&quot;homepage&quot;</span><span class="s1">)</span><span class="s0">,</span>
+                <span class="s1">dbc.DropdownMenuItem(</span><span class="s2">&quot;analysis&quot;</span><span class="s1">)</span><span class="s0">,</span>
+                <span class="s1">dbc.DropdownMenuItem(divider=</span><span class="s0">True</span><span class="s1">)</span><span class="s0">,</span>
+                <span class="s1">dbc.DropdownMenuItem(</span><span class="s2">&quot;conclusion&quot;</span><span class="s1">)</span><span class="s0">,</span>
+            <span class="s1">]</span><span class="s0">,</span>
+        <span class="s1">)</span><span class="s0">,</span>
+    <span class="s1">]</span><span class="s0">,</span>
+    <span class="s1">brand=</span><span class="s2">&quot;Keyword Matrix📝&quot;</span><span class="s0">,</span>
+    <span class="s1">brand_href=</span><span class="s2">&quot;#&quot;</span><span class="s0">,</span>
+    <span class="s1">sticky=</span><span class="s2">&quot;top&quot;</span><span class="s0">,</span>
+<span class="s1">className=</span><span class="s2">&quot;navbar navbar-expand-sm bg-dark .text-white navbar-dark sticky-top&quot; </span><span class="s0">,</span>
+<span class="s1">)</span>
+<span class="s1">sidebar = html.Div(</span>
+    <span class="s1">[</span>
+        <span class="s1">dbc.Row(</span>
+            <span class="s1">[</span>
+                <span class="s1">html.H5(</span><span class="s2">'Find yourself here!'</span><span class="s0">,</span>
+                        <span class="s1">style={</span><span class="s2">'margin-top'</span><span class="s1">: </span><span class="s2">'12px'</span><span class="s0">, </span><span class="s2">'margin-left'</span><span class="s1">: </span><span class="s2">'24px'</span><span class="s1">})</span>
+            <span class="s1">]</span><span class="s0">,</span>
+            <span class="s1">style={</span><span class="s2">&quot;height&quot;</span><span class="s1">: </span><span class="s2">&quot;5vh&quot;</span><span class="s1">}</span><span class="s0">,</span>
+            <span class="s1">className=</span><span class="s2">'bg-light text-white'</span>
+        <span class="s1">)</span><span class="s0">,</span>
+        <span class="s1">dbc.Row(</span>
+            <span class="s1">[</span>
+                <span class="s1">html.Div([ html.Hr()</span><span class="s0">,</span>
+                    <span class="s1">html.P(</span><span class="s2">'Find your name to see individual weekly keywords'</span><span class="s0">,</span>
+                           <span class="s1">style={</span><span class="s2">'margin-top'</span><span class="s1">: </span><span class="s2">'8px'</span><span class="s0">, </span><span class="s2">'margin-bottom'</span><span class="s1">: </span><span class="s2">'4px'</span><span class="s1">}</span><span class="s0">,</span>
+                           <span class="s1">className=</span><span class="s2">'bg-dark text-white'</span><span class="s1">)</span><span class="s0">,</span>
+                    <span class="s1">dcc.Dropdown([</span><span class="s2">'student1'</span><span class="s0">, </span><span class="s2">'student2'</span><span class="s0">, </span><span class="s2">'student3'</span><span class="s0">,</span><span class="s2">'student4'</span><span class="s0">,</span><span class="s2">'student5'</span><span class="s0">,</span><span class="s2">'student6'</span><span class="s0">,</span><span class="s2">'student7'</span><span class="s0">,</span><span class="s2">'student8'</span><span class="s0">,</span><span class="s2">'student9'</span><span class="s0">,</span><span class="s2">'student10'</span><span class="s0">,</span><span class="s2">'student11'</span><span class="s0">,</span><span class="s2">'student12'</span><span class="s1">]</span><span class="s0">, </span><span class="s2">&quot;student1&quot;</span><span class="s0">,  </span><span class="s1">multi=</span><span class="s0">False,</span>
+                                 <span class="s4">#options=[{'label': x, 'value': x} for x in XX], if we need larger sample size in the future</span>
+                                 <span class="s1">style={</span><span class="s2">'width'</span><span class="s1">: </span><span class="s2">'220px'</span><span class="s1">}</span>
+                                 <span class="s1">)</span><span class="s0">,</span>
+
+                    <span class="s1">html.P(</span><span class="s2">'Find your name to see your individual aggregated keywords in 4 weeks'</span><span class="s0">,</span>
+                           <span class="s1">style={</span><span class="s2">'margin-top'</span><span class="s1">: </span><span class="s2">'16px'</span><span class="s0">, </span><span class="s2">'margin-bottom'</span><span class="s1">: </span><span class="s2">'4px'</span><span class="s1">}</span><span class="s0">,</span>
+                           <span class="s1">className=</span><span class="s2">'bg-dark text-white'</span><span class="s1">)</span><span class="s0">,</span>
+                    <span class="s1">dcc.Dropdown(</span>
+                        <span class="s1">[</span><span class="s2">'student1'</span><span class="s0">, </span><span class="s2">'student2'</span><span class="s0">, </span><span class="s2">'student3'</span><span class="s0">, </span><span class="s2">'student4'</span><span class="s0">, </span><span class="s2">'student5'</span><span class="s0">, </span><span class="s2">'student6'</span><span class="s0">, </span><span class="s2">'student7'</span><span class="s0">, </span><span class="s2">'student8'</span><span class="s0">,</span>
+                         <span class="s2">'student9'</span><span class="s0">, </span><span class="s2">'student10'</span><span class="s0">, </span><span class="s2">'student11'</span><span class="s0">, </span><span class="s2">'student12'</span><span class="s1">]</span><span class="s0">, </span><span class="s2">&quot;student1&quot;</span><span class="s0">, </span><span class="s1">multi=</span><span class="s0">False,</span>
+                        <span class="s4"># options=[{'label': x, 'value': x} for x in XX], if we need larger sample size in the future</span>
+                        <span class="s1">style={</span><span class="s2">'width'</span><span class="s1">: </span><span class="s2">'220px'</span><span class="s1">}</span>
+                        <span class="s1">)</span><span class="s0">,</span>
+
+                    <span class="s1">html.P(</span><span class="s2">'See keywords of the whole class in 4 weeks'</span><span class="s0">,</span>
+                           <span class="s1">style={</span><span class="s2">'margin-top'</span><span class="s1">: </span><span class="s2">'16px'</span><span class="s0">, </span><span class="s2">'margin-bottom'</span><span class="s1">: </span><span class="s2">'4px'</span><span class="s1">}</span><span class="s0">,</span>
+                           <span class="s1">className=</span><span class="s2">'bg-dark text-white'</span><span class="s1">)</span><span class="s0">,</span>
+                    <span class="s1">dcc.Dropdown(</span>
+                        <span class="s1">[</span><span class="s2">'Week1'</span><span class="s0">, </span><span class="s2">'Week2'</span><span class="s0">, </span><span class="s2">'Week3'</span><span class="s0">, </span><span class="s2">'Week4'</span><span class="s0">, </span><span class="s2">'Week5'</span><span class="s0">, </span><span class="s2">'Week6'</span><span class="s0">, </span><span class="s2">'Week7'</span><span class="s0">, </span><span class="s2">'Week8'</span><span class="s0">, </span><span class="s2">'Week9'</span><span class="s0">, </span><span class="s2">'Week10'</span><span class="s0">,</span>
+                         <span class="s2">'Week11'</span><span class="s0">, </span><span class="s2">'Week12'</span><span class="s1">]</span><span class="s0">, </span><span class="s2">&quot;Week1&quot;</span><span class="s0">, </span><span class="s1">multi=</span><span class="s0">False,</span>
+                        <span class="s4"># options=[{'label': x, 'value': x} for x in XX], if we need larger sample size in the future</span>
+                        <span class="s1">style={</span><span class="s2">'width'</span><span class="s1">: </span><span class="s2">'220px'</span><span class="s1">}</span>
+                        <span class="s1">)</span><span class="s0">,</span>
+                    <span class="s1">html.Button(id=</span><span class="s2">'my-button'</span><span class="s0">, </span><span class="s1">n_clicks=</span><span class="s3">0</span><span class="s0">, </span><span class="s1">children=</span><span class="s2">'apply'</span><span class="s0">,</span>
+                                <span class="s1">style={</span><span class="s2">'margin-top'</span><span class="s1">: </span><span class="s2">'16px'</span><span class="s1">}</span><span class="s0">,</span>
+                                <span class="s1">className=</span><span class="s2">'bg-dark text-white'</span><span class="s1">)</span><span class="s0">,</span>
+                    <span class="s1">html.Hr()</span>
+                <span class="s1">]</span>
+                <span class="s1">)</span>
+            <span class="s1">]</span><span class="s0">,</span>
+            <span class="s1">style={</span><span class="s2">'height'</span><span class="s1">: </span><span class="s2">'50vh'</span><span class="s0">, </span><span class="s2">'margin'</span><span class="s1">: </span><span class="s2">'8px'</span><span class="s1">})</span><span class="s0">,</span><span class="s1">html.Hr()</span><span class="s0">,</span>
+        <span class="s1">dbc.Row(</span>
+            <span class="s1">[</span>
+                <span class="s1">html.P(</span><span class="s2">'Brief instruction: xxxxxx'</span><span class="s0">, </span><span class="s1">className=</span><span class="s2">'bg-dark text-white'</span><span class="s1">)</span>
+            <span class="s1">]</span><span class="s0">,</span>
+            <span class="s1">style={</span><span class="s2">&quot;height&quot;</span><span class="s1">: </span><span class="s2">&quot;45vh&quot;</span><span class="s0">, </span><span class="s2">'margin'</span><span class="s1">: </span><span class="s2">'8px'</span><span class="s1">}</span>
+        <span class="s1">)</span>
+    <span class="s1">]</span>
+<span class="s1">)</span>
+
+<span class="s1">content = html.Div(</span>
+    <span class="s1">[</span>
+        <span class="s1">dbc.Row(</span>
+            <span class="s1">[</span>
+                <span class="s1">dbc.Col(</span>
+                    <span class="s1">[</span>
+                        <span class="s1">html.P(</span><span class="s2">'individual weekly keywords'</span><span class="s0">,</span><span class="s1">className=</span><span class="s2">'font-weight-bold'</span><span class="s1">)</span><span class="s0">,</span>
+                        <span class="s1">html.Iframe(srcDoc=initial_html</span><span class="s0">, </span><span class="s1">width=</span><span class="s2">'90%'</span><span class="s0">, </span><span class="s1">height=</span><span class="s2">'600'</span><span class="s0">,</span>
+                                    <span class="s1">style={</span><span class="s2">'height'</span><span class="s1">: </span><span class="s2">'45vh'</span><span class="s1">})</span><span class="s0">,</span>
+
+                        <span class="s1">])</span><span class="s0">,</span>
+                <span class="s1">dbc.Col(</span>
+                    <span class="s1">[</span>
+                        <span class="s1">html.P(</span><span class="s2">'individual aggregated keywords'</span><span class="s0">,</span><span class="s1">className=</span><span class="s2">'font-weight-bold'</span><span class="s1">)</span><span class="s0">,</span>
+                        <span class="s1">html.Iframe(srcDoc=second_html</span><span class="s0">, </span><span class="s1">width=</span><span class="s2">'90%'</span><span class="s0">, </span><span class="s1">height=</span><span class="s2">'600'</span><span class="s0">,</span>
+                                    <span class="s1">style={</span><span class="s2">'height'</span><span class="s1">: </span><span class="s2">'45vh'</span><span class="s1">})</span><span class="s0">,</span>
+                    <span class="s1">])</span>
+            <span class="s1">]</span><span class="s0">,</span>
+            <span class="s1">style={</span><span class="s2">&quot;height&quot;</span><span class="s1">: </span><span class="s2">&quot;50vh&quot;</span><span class="s1">})</span><span class="s0">,</span>
+        <span class="s1">dbc.Row(</span>
+            <span class="s1">[</span>
+                <span class="s1">dbc.Col(</span>
+                    <span class="s1">[</span>
+                        <span class="s1">html.P(</span><span class="s2">'keywords of the whole class'</span><span class="s1">)</span><span class="s0">,</span>
+                    <span class="s1">html.Div([</span>
+                        <span class="s1">dcc.Graph(id=</span><span class="s2">'keywords'</span><span class="s0">, </span><span class="s1">figure=fig)</span>
+                    <span class="s1">])</span><span class="s0">, </span><span class="s4">#md=10,</span>
+
+                    <span class="s1">])</span>
+            <span class="s1">]</span><span class="s0">,</span>
+            <span class="s1">style={</span><span class="s2">&quot;height&quot;</span><span class="s1">: </span><span class="s2">&quot;50vh&quot;</span><span class="s0">, </span><span class="s2">'margin'</span><span class="s1">: </span><span class="s2">'8px'</span><span class="s1">}</span>
+            <span class="s1">)</span>
+        <span class="s1">]</span>
+    <span class="s1">)</span>
+
+<span class="s1">app.layout = dbc.Container(</span>
+    <span class="s1">[dbc.Row(dbc.Col(navbar</span><span class="s0">, </span><span class="s1">width=</span><span class="s3">40</span><span class="s1">))</span><span class="s0">,</span>
+<span class="s1">html.Hr()</span><span class="s0">,</span>
+        <span class="s1">dbc.Row(</span>
+            <span class="s1">[</span>
+                <span class="s1">dbc.Col(sidebar</span><span class="s0">, </span><span class="s1">width=</span><span class="s3">3</span><span class="s0">, </span><span class="s1">className=</span><span class="s2">'bg-dark'</span><span class="s1">)</span><span class="s0">,</span>
+                <span class="s1">dbc.Col(content</span><span class="s0">, </span><span class="s1">width=</span><span class="s3">9</span><span class="s1">)</span>
+                <span class="s1">]</span>
+            <span class="s1">)</span><span class="s0">,</span>
+        <span class="s1">]</span><span class="s0">,</span>
+    <span class="s1">fluid=</span><span class="s0">True</span>
+    <span class="s1">)</span>
+
+
+<span class="s0">if </span><span class="s1">__name__ == </span><span class="s2">&quot;__main__&quot;</span><span class="s1">:</span>
+    <span class="s1">app.run_server(debug=</span><span class="s0">True, </span><span class="s1">port=</span><span class="s3">1234</span><span class="s1">)</span></pre>
+</body>
+</html>
