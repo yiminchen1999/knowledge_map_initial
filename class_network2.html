@@ -88,8 +88,8 @@
                   
 
                   // parsing and collecting nodes and edges from the python
-                  nodes = new vis.DataSet([{"color": "#4dc0b5", "id": 70, "label": "repurpos", "shape": "dot", "size": 9, "title": "Sadia, Mariana"}, {"color": "#4dc0b5", "id": 78, "label": "disassembl", "shape": "dot", "size": 6, "title": "Zhanlan"}, {"color": "#f6993f", "id": 21, "label": "electron", "shape": "dot", "size": 6, "title": "Katie"}, {"color": "#f6993f", "id": 22, "label": "electr", "shape": "dot", "size": 6, "title": "Katie"}, {"color": "#4dc0b5", "id": 62, "label": "reflect", "shape": "dot", "size": 6, "title": "Katie"}, {"color": "#4dc0b5", "id": 68, "label": "repair", "shape": "dot", "size": 12, "title": "Katie, Andrea, Heidi"}, {"color": "#38c172", "id": 53, "label": "logic", "shape": "dot", "size": 6, "title": "Andrea"}, {"color": "#4dc0b5", "id": 64, "label": "rethink", "shape": "dot", "size": 6, "title": "Kiki"}]);
-                  edges = new vis.DataSet([{"from": 70, "hidden": true, "to": 78}, {"from": 70, "hidden": true, "to": 62}, {"from": 70, "hidden": true, "to": 68}, {"from": 70, "hidden": true, "to": 64}, {"from": 78, "hidden": true, "to": 62}, {"from": 78, "hidden": true, "to": 68}, {"from": 78, "hidden": true, "to": 64}, {"from": 21, "hidden": true, "to": 22}, {"from": 62, "hidden": true, "to": 68}, {"from": 62, "hidden": true, "to": 64}, {"from": 68, "hidden": true, "to": 64}]);
+                  nodes = new vis.DataSet([{"color": "#DEEBF7", "id": 2, "label": "woodtool", "shape": "dot", "size": 12, "title": "student1, student2, student3"}, {"color": "#DEEBF7", "id": 3, "label": "design", "shape": "dot", "size": 9, "title": "student1, student3"}, {"color": "#DEEBF7", "id": 4, "label": "debug", "shape": "dot", "size": 6, "title": "student1"}, {"color": "#DEEBF7", "id": 10, "label": "shape ", "shape": "dot", "size": 12, "title": "student1, student2, student3"}, {"color": "#DEEBF7", "id": 11, "label": "material", "shape": "dot", "size": 12, "title": "student1, student2, student3"}, {"color": "#DEEBF7", "id": 12, "label": "battery", "shape": "dot", "size": 9, "title": "student1, student2"}, {"color": "#DEEBF7", "id": 13, "label": "power", "shape": "dot", "size": 6, "title": "student1"}, {"color": "#DEEBF7", "id": 0, "label": "lasercut", "shape": "dot", "size": 6, "title": "student2"}, {"color": "#DEEBF7", "id": 7, "label": "2ddesign", "shape": "dot", "size": 9, "title": "student2, student3"}, {"color": "#DEEBF7", "id": 9, "label": "angle", "shape": "dot", "size": 6, "title": "student2"}]);
+                  edges = new vis.DataSet([{"from": 3, "to": 0}, {"from": 3, "to": 7}, {"from": 4, "to": 10}, {"from": 4, "to": 11}, {"from": 4, "to": 9}, {"from": 10, "to": 11}, {"from": 10, "to": 9}, {"from": 11, "to": 9}, {"from": 12, "to": 13}, {"from": 0, "to": 7}]);
 
                   nodeColors = {};
                   allNodes = nodes.get({ returnType: "Object" });
@@ -120,14 +120,6 @@
     },
     "physics": {
         "enabled": true,
-        "repulsion": {
-            "centralGravity": 0.9,
-            "damping": 0.09,
-            "nodeDistance": 100,
-            "springConstant": 0.05,
-            "springLength": 50
-        },
-        "solver": "repulsion",
         "stabilization": {
             "enabled": true,
             "fit": true,
