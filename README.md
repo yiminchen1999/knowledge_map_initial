@@ -1,2 +1,4 @@
-# How to deploy a simple Plotly Dash app on Heroku
-https://tltl-knowledge-map-ver2.herokuapp.com/
+# Dash app on Heroku
+ver1: https://tltl-knowledge-map-initial.herokuapp.com/
+ver2: https://tltl-knowledgemap-demo.herokuapp.com/
+ver3: 
