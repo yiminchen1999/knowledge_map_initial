@@ -1,6 +1,8 @@
+# How to deploy a simple Plotly Dash app on Heroku
 
-
-* You can view the finished app on (https://tltl-knowledgemap-demo.herokuapp.com).
+* You can view the finished app on [Heroku](https://flying-dog.herokuapp.com/).
+* Take a moment to read my [Medium post about how to deploy this app](https://austinlasseter.medium.com/how-to-deploy-a-simple-plotly-dash-app-to-heroku-622a2216eb73)
+* I also have another [Medium post](https://austinlasseter.medium.com/deploy-a-plotly-dash-app-on-heroku-4d2c3224230) about how to do this using the CLI
 
 ### Additional Reading
 * Plotly’s [Dash deployment guide](https://dash.plotly.com/deployment)
